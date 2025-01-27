@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Ejemplo de servicio</title>
+</head>
+<body>
+    <h1>Ejemplo de sevicio</h1>
+    <button onclick="ejecuta()">Ejecuta</button>
+    <script>
+        async function ejecuta() {
+            try {
+                // Conecta con el servicio en el servidor
+                const resp = await fetch("servicio.php");
+                if (resp.ok) {
+                    // Obtiene el texto de la respuesta
+                    const texto = await resp.text();
+                    alert(texto); // Muestra la respuesta en un alert
+                } else {
+                    throw new Error(resp.statusText);
+                }
+            } catch (error) {
+                console.error(error);
+                alert(error.message); // Muestra errores si algo falla
+            }
+        }
+    </script>
+</body>
+</html>
